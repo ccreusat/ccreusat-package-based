@@ -1,0 +1,36 @@
+{
+  "name": "client",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/{projectName}/src",
+  "projectType": "library",
+  "release": {
+    "version": {
+      "generatorOptions": {
+        "packageRoot": "packages/{projectName}/dist",
+        "currentVersionResolver": "git-tag"
+      }
+    }
+  },
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx/vite:build",
+      "outputs": [
+        "{options.outputPath}"
+      ],
+      "options": {
+        "outputPath": "packages/{projectName}/dist",
+        "main": "packages/{projectName}/src/index.ts",
+        "tsConfig": "packages/{projectName}/tsconfig.lib.json",
+        "assets": [
+          "packages/{projectName}/*.md"
+        ]
+      }
+    },
+    "nx-release-publish": {
+      "options": {
+        "packageRoot": "packages/{projectName}/dist"
+      }
+    }
+  }
+}

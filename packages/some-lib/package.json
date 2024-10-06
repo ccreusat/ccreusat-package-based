@@ -1,5 +1,6 @@
 {
   "name": "@ccreusat/some-lib",
+  "private": false,
   "version": "0.0.1",
   "main": "./index.js",
   "types": "./index.d.ts",
@@ -8,5 +9,8 @@
       "import": "./index.mjs",
       "require": "./index.js"
     }
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

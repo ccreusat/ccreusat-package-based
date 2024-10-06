@@ -52,7 +52,9 @@
       "generatorOptions": {
         "packageRoot": "packages/{projectName}/dist",
         "currentVersionResolver": "registry",
-        "skipLockFileUpdate": true
+        "skipLockFileUpdate": true,
+        "specifierSource": "conventional-commits",
+        "preserveLocalDependencyProtocols": true
       },
       "git": {
         "commit": false,

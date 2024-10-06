@@ -3,23 +3,12 @@
   "private": false,
   "version": "0.0.1",
   "main": "./index.js",
-  "module": "./index.mjs",
   "types": "./index.d.ts",
-  "files": [
-    "lib",
-    "lib/*",
-    "dist",
-    "dist/*"
-  ],
   "exports": {
     ".": {
       "import": "./index.mjs",
       "require": "./index.js"
     }
-  },
-  "dependencies": {
-    "react": "18.3.1",
-    "react-dom": "18.3.1"
   },
   "publishConfig": {
     "access": "public"

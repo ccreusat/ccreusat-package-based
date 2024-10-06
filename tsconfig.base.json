@@ -16,7 +16,8 @@
     "baseUrl": ".",
     "paths": {
       "client": ["packages/client/src/index.ts"],
-      "my-lib": ["packages/my-lib/src/index.ts"]
+      "my-lib": ["packages/my-lib/src/index.ts"],
+      "some-lib": ["packages/some-lib/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

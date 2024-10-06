@@ -6,7 +6,7 @@
   "release": {
     "version": {
       "generatorOptions": {
-        "packageRoot": "packages/{projectName}/dist",
+        "packageRoot": "packages/{projectName}/dist/",
         "currentVersionResolver": "git-tag"
       }
     }
@@ -20,7 +20,7 @@
         "{options.outputPath}"
       ],
       "options": {
-        "outputPath": "packages/{projectName}/dist",
+        "outputPath": "packages/{projectName}/dist/",
         "main": "packages/{projectName}/src/index.ts",
         "tsConfig": "packages/{projectName}/tsconfig.lib.json",
         "assets": [
@@ -30,7 +30,7 @@
     },
     "nx-release-publish": {
       "options": {
-        "packageRoot": "packages/{projectName}/dist"
+        "packageRoot": "packages/{projectName}/dist/"
       }
     }
   }

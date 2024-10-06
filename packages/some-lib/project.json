@@ -1,7 +1,7 @@
 {
-  "name": "client",
+  "name": "some-lib",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "packages/{projectName}/src",
+  "sourceRoot": "packages/some-lib/src",
   "projectType": "library",
   "release": {
     "version": {
@@ -12,6 +12,7 @@
     }
   },
   "tags": [],
+  "// targets": "to see all targets run: nx show project some-lib --web",
   "targets": {
     "build": {
       "executor": "@nx/vite:build",

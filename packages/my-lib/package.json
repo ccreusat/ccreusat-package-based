@@ -3,9 +3,13 @@
   "private": false,
   "version": "0.0.1",
   "main": "./index.js",
+  "module": "./index.mjs",
   "types": "./index.d.ts",
   "files": [
-    "dist"
+    "lib",
+    "lib/*",
+    "dist",
+    "dist/*"
   ],
   "exports": {
     ".": {

@@ -7,7 +7,9 @@
   "extends": "nx/presets/npm.json",
   "$schema": "./node_modules/nx/schemas/nx-schema.json",
   "namedInputs": {
-    "sharedGlobals": ["{workspaceRoot}/.github/workflows/ci.yml"]
+    "sharedGlobals": [
+      "{workspaceRoot}/.github/workflows/ci.yml"
+    ]
   },
   "plugins": [
     {
@@ -35,7 +37,9 @@
     }
   },
   "release": {
-    "projects": ["packages/*"],
+    "projects": [
+      "packages/*"
+    ],
     "releaseTagPattern": "{version}",
     "changelog": {
       "workspaceChangelog": {
@@ -49,16 +53,20 @@
         "packageRoot": "packages/{projectName}/dist",
         "currentVersionResolver": "git-tag",
         "skipLockFileUpdate": true,
-        "specifierSource": "conventional-commits",
-        "preserveLocalDependencyProtocols": true
+        "specifierSource": "conventional-commits"
       }
     }
   },
   "targetDefaults": {
     "@nx/vite:build": {
       "cache": true,
-      "dependsOn": ["^build"],
-      "inputs": ["default", "^default"]
+      "dependsOn": [
+        "^build"
+      ],
+      "inputs": [
+        "default",
+        "^default"
+      ]
     }
   }
 }

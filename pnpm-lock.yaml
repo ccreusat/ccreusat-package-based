@@ -137,6 +137,9 @@ importers:
 
   packages/some-lib:
     dependencies:
+      '@ccreusat/client':
+        specifier: workspace:*
+        version: link:../client
       react:
         specifier: 18.3.1
         version: 18.3.1

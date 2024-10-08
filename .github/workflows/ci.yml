@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+      - develop
   pull_request:
 
 permissions:
@@ -12,6 +13,10 @@ permissions:
 
 jobs:
   main:
+    permissions:
+      contents: write #  to be able to publish a GitHub release
+      issues: write #  to be able to comment on released issues
+      pull-requests: write #  to be able to comment on released pull requests
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -26,12 +31,34 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 20
+          registry-url: 'https://registry.npmjs.org/'
           cache: 'pnpm'
 
-      - run: pnpm install --frozen-lockfile
+      - run: pnpm install --no-frozen-lockfile
+        name: Install & Build
+
       - uses: nrwl/nx-set-shas@v4
 
-      # Prepend any command with "nx-cloud record --" to record its logs to Nx Cloud
-      # - run: pnpm exec nx-cloud record -- echo Hello World
-      # Nx Affected runs only tasks affected by the changes in this PR/commit. Learn more: https://nx.dev/ci/features/affected
-      - run: pnpm exec nx affected -t lint test build
+      - name: Affected build
+        run: pnpm exec nx affected -t build
+
+      - name: Version & Publish
+        run: |
+          git config user.name "${{ github.actor }}"
+          git config user.email "${{ github.actor}}@users.noreply.github.com"
+
+          echo "Your current branch is ${{ github.ref_name }}"
+
+          if [ ${{ github.ref_name }} = "main" ]; then
+            echo "This is the main branch."
+            pnpm nx release --first-release --skip-publish
+            pnpm nx release publish
+          else
+            echo "This is not the main branch."
+            pnpm nx release --skip-publish
+            pnpm nx release publish --tag ${{ github.ref_name }} --output-style=stream
+          fi
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}

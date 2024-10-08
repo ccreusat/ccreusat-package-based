@@ -8,7 +8,11 @@
   "$schema": "./node_modules/nx/schemas/nx-schema.json",
   "namedInputs": {
     "sharedGlobals": [
-      "{workspaceRoot}/.github/workflows/ci.yml"
+      "{workspaceRoot}/.github/workflows/ci.yml",
+      "{workspaceRoot}/.github/workflows/test.yml"
+    ],
+    "default": [
+      "sharedGlobals"
     ]
   },
   "plugins": [
@@ -41,6 +45,9 @@
       "packages/*"
     ],
     "releaseTagPattern": "{version}",
+    "git": {
+      "commitMessage": "chore(): version and publish v{version}"
+    },
     "changelog": {
       "workspaceChangelog": {
         "createRelease": "github",

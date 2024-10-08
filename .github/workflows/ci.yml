@@ -12,7 +12,7 @@ permissions:
   contents: read
 
 jobs:
-  main:
+  publish:
     permissions:
       contents: write #  to be able to publish a GitHub release
       issues: write #  to be able to comment on released issues
@@ -33,6 +33,13 @@ jobs:
           node-version: 20
           registry-url: 'https://registry.npmjs.org/'
           cache: 'pnpm'
+
+      - name: Generate .npmrc
+        run: |
+          pnpm config set @ccreusat:registry https://registry.npmjs.org
+          pnpm config set //registry.npmjs.org/:_authToken ${{ secrets.NPM_TOKEN }}
+          pnpm config set auto-install-peers true
+          pnpm config set strict-peer-dependencies false
 
       - run: pnpm install --no-frozen-lockfile
         name: Install & Build

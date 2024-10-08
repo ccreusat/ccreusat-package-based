@@ -62,7 +62,7 @@ jobs:
             pnpm nx release publish
           else
             echo "This is not the main branch."
-            pnpm nx release --skip-publish
+            pnpm nx release --first-release --skip-publish
             pnpm nx release publish --tag ${{ github.ref_name }} --output-style=stream
           fi
         env:

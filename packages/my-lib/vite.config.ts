@@ -1,4 +1,5 @@
 /// <reference types='vitest' />
+import { nxCopyAssetsPlugin } from '@nx/vite/plugins/nx-copy-assets.plugin';
 import { nxViteTsPaths } from '@nx/vite/plugins/nx-tsconfig-paths.plugin';
 import react from '@vitejs/plugin-react';
 import * as path from 'path';
@@ -12,6 +13,7 @@ export default defineConfig({
   plugins: [
     react(),
     nxViteTsPaths(),
+    nxCopyAssetsPlugin(['*.md']),
     dts({
       entryRoot: 'src',
       tsconfigPath: path.join(__dirname, 'tsconfig.lib.json'),

@@ -46,11 +46,10 @@
     ],
     "releaseTagPattern": "{version}",
     "git": {
-      "commitMessage": "chore(): version and publish v{version}",
+      "commitMessage": "chore: version and publish v{version}",
       "commit": true,
       "tag": true,
-      "push": true,
-      "currentVersionResolver": "git-tag"
+      "push": true
     },
     "changelog": {
       "workspaceChangelog": {

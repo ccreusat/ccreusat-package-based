@@ -59,10 +59,10 @@ jobs:
           if [ ${{ github.ref_name }} = "main" ]; then
             echo "This is the main branch."
             pnpm nx release --first-release --skip-publish
-            pnpm nx release publish
+            pnpm nx release publish --output-style=stream
           else
             echo "This is not the main branch."
-            pnpm nx release --first-release --skip-publish
+            pnpm nx release --skip-publish
             pnpm nx release publish --tag ${{ github.ref_name }} --output-style=stream
           fi
         env:

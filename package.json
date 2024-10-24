@@ -3,8 +3,8 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "version": "lerna version --conventional-commits --no-changelog --no-private --yes",
-    "publish": "lerna publish from-package --no-private --yes",
+    "version:release": "lerna version --conventional-commits --no-changelog --no-private --yes",
+    "publish:release": "lerna publish from-package --no-private --yes",
     "version:prerelease": "lerna version --conventional-commits --conventional-prerelease --no-changelog --no-private --yes"
   },
   "private": true,

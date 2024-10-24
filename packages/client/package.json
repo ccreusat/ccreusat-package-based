@@ -1,8 +1,7 @@
 {
   "name": "@ccreusat/client",
   "private": false,
-  "version": "0.0.1",
-  "dependencies": {},
+  "version": "0.1.0",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "typings": "./dist/index.d.ts",

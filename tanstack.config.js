@@ -2,7 +2,7 @@
 
 import { fileURLToPath } from 'node:url';
 
-export const packages = [
+/* export const packages = [
   {
     name: '@ccreusat/some-lib',
     packageDir: 'packages/some-lib',
@@ -15,7 +15,7 @@ export const packages = [
     name: '@ccreusat/client',
     packageDir: 'packages/client',
   },
-];
+]; */
 
 export const branchConfigs = {
   main: {

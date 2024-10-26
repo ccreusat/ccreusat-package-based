@@ -4,7 +4,9 @@
   "license": "MIT",
   "type": "module",
   "scripts": {
-    "tanstack-config-publish": "tanstack-config publish"
+    "tanstack-config-publish": "tanstack-config publish",
+    "build": "turbo run build",
+    "check-types": "turbo run check-types"
   },
   "private": true,
   "devDependencies": {

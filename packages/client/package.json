@@ -1,6 +1,6 @@
 {
   "name": "@ccreusat/client",
-  "version": "0.3.2-develop.8",
+  "version": "0.3.2-develop.9",
   "private": false,
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",

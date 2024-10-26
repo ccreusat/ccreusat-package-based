@@ -10,10 +10,10 @@
   },
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
-  "scripts": {
-    "build": "vite build",
-    "check-types": "tsc --noEmit"
-  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {},
   "dependencies": {
     "@ccreusat/client": "workspace:*",
     "react": "catalog:",

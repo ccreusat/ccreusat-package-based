@@ -5,10 +5,10 @@
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "typings": "./dist/index.d.ts",
-  "scripts": {
-    "build": "vite build",
-    "check-types": "tsc --noEmit"
-  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {},
   "devDependencies": {
     "@eslint/js": "catalog:",
     "@types/node": "catalog:",

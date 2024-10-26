@@ -1,6 +1,4 @@
 /// <reference types='vitest' />
-import { nxCopyAssetsPlugin } from '@nx/vite/plugins/nx-copy-assets.plugin';
-import { nxViteTsPaths } from '@nx/vite/plugins/nx-tsconfig-paths.plugin';
 import * as path from 'path';
 import { defineConfig } from 'vite';
 import dts from 'vite-plugin-dts';
@@ -10,11 +8,9 @@ export default defineConfig({
   cacheDir: '../../node_modules/.vite/packages/client',
 
   plugins: [
-    nxCopyAssetsPlugin(['*.md']),
-    nxViteTsPaths(),
     dts({
       entryRoot: 'src',
-      tsconfigPath: path.join(__dirname, 'tsconfig.lib.json'),
+      tsconfigPath: path.join(__dirname, 'tsconfig.json'),
     }),
   ],
 

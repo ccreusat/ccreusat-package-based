@@ -8,6 +8,10 @@ export const packages = [
     packageDir: 'packages/some-lib',
   },
   {
+    name: '@ccreusat/my-lib',
+    packageDir: 'packages/my-lib',
+  },
+  {
     name: '@ccreusat/client',
     packageDir: 'packages/client',
   },

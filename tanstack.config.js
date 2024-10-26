@@ -22,4 +22,6 @@ export const branchConfigs = {
   },
 };
 
+export const ghToken = process.env.GITHUB_TOKEN;
+
 export const rootDir = fileURLToPath(new URL('.', import.meta.url));

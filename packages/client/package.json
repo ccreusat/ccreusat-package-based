@@ -8,7 +8,10 @@
   "files": [
     "dist"
   ],
-  "scripts": {},
+  "scripts": {
+    "build": "vite build",
+    "check-types": "tsc --noEmit"
+  },
   "devDependencies": {
     "@eslint/js": "catalog:",
     "@types/node": "catalog:",

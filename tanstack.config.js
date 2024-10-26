@@ -25,4 +25,3 @@ export const branchConfigs = {
 export const ghToken = process.env.GH_TOKEN;
 
 export const rootDir = fileURLToPath(new URL('.', import.meta.url));
-console.log({ rootDir });

@@ -403,6 +403,11 @@ export const publish = async (options) => {
       .map((pkg) => path.resolve(rootDir, pkg.packageDir, 'package.json'))
       .join(' ')}`
   );
+  execSync(
+    `git checkout -- ${changedPackages
+      .map((pkg) => path.resolve(rootDir, pkg.packageDir, 'package.json'))
+      .join(' ')}`
+  );
   execSync(`git commit -m "${releaseCommitMsg(version)}" --allow-empty`);
   console.info('  Committed Changes.');
 

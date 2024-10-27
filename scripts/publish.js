@@ -59,7 +59,6 @@ export const publish = async (options) => {
 
   // Get the latest tag
   let latestTag = filteredTags.at(-1);
-
   let rangeFrom = latestTag;
 
   // If RELEASE_ALL is set via a commit subject or body, all packages will be

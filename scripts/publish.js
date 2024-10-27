@@ -360,6 +360,13 @@ export const publish = async (options) => {
     return;
   }
 
+  if (!process.env.CI) {
+    console.warn(
+      `This is a dry run for version ${version}. Push to CI to publish for real or set CI=true to override!`
+    );
+    return;
+  }
+
   console.info(`Updating all changed packages to version ${version}...`);
   // Update each package to the new version
   for (const pkg of changedPackages) {
@@ -371,13 +378,6 @@ export const publish = async (options) => {
         config.version = version;
       }
     );
-  }
-
-  if (!process.env.CI) {
-    console.warn(
-      `This is a dry run for version ${version}. Push to CI to publish for real or set CI=true to override!`
-    );
-    return;
   }
 
   console.info();

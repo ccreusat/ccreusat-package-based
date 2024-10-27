@@ -1,8 +1,8 @@
 import { describe, expect, it } from 'vitest';
-import { http } from './http';
+import { tracking } from './tracking';
 
-describe('http', () => {
+describe('tracking', () => {
   it('should work', () => {
-    expect(http()).toEqual('http');
+    expect(tracking()).toEqual('tracking');
   });
 });

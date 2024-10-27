@@ -382,7 +382,13 @@ export const publish = async (options) => {
 
   console.info();
   console.info('Committing changes...');
-  execSync(`git add -A && git commit -m "${releaseCommitMsg(version)}"`);
+  //execSync(`git add -A && git commit -m "${releaseCommitMsg(version)}"`);
+  execSync(
+    `git add -A && git reset -- ${changedPackages
+      .map((pkg) => path.resolve(rootDir, pkg.packageDir, 'package.json'))
+      .join(' ')}`
+  );
+  execSync(`git commit -m "${releaseCommitMsg(version)}"`);
   console.info('  Committed Changes.');
 
   console.info();
@@ -395,6 +401,7 @@ export const publish = async (options) => {
     const cmd = `cd ${packageDir} && pnpm publish --tag ${npmTag} --access=public --no-git-checks`;
     console.info(`  Publishing ${pkg.name}@${version} to npm...`);
     execSync(cmd, {
+      // @ts-ignore
       stdio: [process.stdin, process.stdout, process.stderr],
     });
   }

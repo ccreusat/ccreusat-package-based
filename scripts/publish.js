@@ -374,45 +374,6 @@ export const publish = async (options) => {
     );
   }
 
-  // if (existsSync(path.resolve(rootDir, 'examples'))) {
-  //   console.info('Updating examples to use new package versions...');
-  //   const examplePkgJsonArray = /** @type {string[]} */ (
-  //     readdirSync(path.resolve(rootDir, 'examples'), {
-  //       recursive: true,
-  //     }).filter(
-  //       (file) =>
-  //         typeof file === 'string' &&
-  //         file.includes('package.json') &&
-  //         !file.includes('node_modules')
-  //     )
-  //   );
-  //   if (examplePkgJsonArray.length !== 0) {
-  //     for (const examplePkgJson of examplePkgJsonArray) {
-  //       await updatePackageJson(
-  //         path.resolve(rootDir, 'examples', examplePkgJson),
-  //         (config) => {
-  //           for (const pkg of changedPackages) {
-  //             if (config.dependencies?.[pkg.name]) {
-  //               config.dependencies[pkg.name] = `^${version}`;
-  //             }
-  //             if (config.devDependencies?.[pkg.name]) {
-  //               config.devDependencies[pkg.name] = `^${version}`;
-  //             }
-  //           }
-  //         }
-  //       );
-  //     }
-  //     if (existsSync(path.resolve(rootDir, 'pnpm-lock.yaml'))) {
-  //       console.info('  Updating pnpm-lock.yaml...');
-  //       try {
-  //         execSync('pnpm install --no-frozen-lockfile');
-  //       } catch (/** @type {any} */ err) {
-  //         throw new Error(err.stdout.toString());
-  //       }
-  //     }
-  //   }
-  // }
-
   if (!process.env.CI) {
     console.warn(
       `This is a dry run for version ${version}. Push to CI to publish for real or set CI=true to override!`

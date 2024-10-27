@@ -31,6 +31,7 @@ export type Options = {
   tag?: string;
   /** The GitHub token used to search for user metadata and make a GitHub release. */
   ghToken?: string;
+  emptyPackageScript?: boolean;
 };
 
 /** https://tanstack.com/config/latest/docs/publish */

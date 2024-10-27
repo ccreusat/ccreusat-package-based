@@ -4,7 +4,6 @@
 import { parse as parseCommit } from '@commitlint/parse';
 import currentGitBranch from 'current-git-branch';
 import { execSync } from 'node:child_process';
-import { existsSync, readdirSync } from 'node:fs';
 import path from 'node:path';
 import * as semver from 'semver';
 import { simpleGit } from 'simple-git';
@@ -132,8 +131,6 @@ export const publish = async (options) => {
       };
     })
   );
-
-  console.log({ commitsSinceLatestTag });
 
   console.info(
     `Parsing ${commitsSinceLatestTag.length} commits since ${rangeFrom}...`
@@ -377,44 +374,44 @@ export const publish = async (options) => {
     );
   }
 
-  if (existsSync(path.resolve(rootDir, 'examples'))) {
-    console.info('Updating examples to use new package versions...');
-    const examplePkgJsonArray = /** @type {string[]} */ (
-      readdirSync(path.resolve(rootDir, 'examples'), {
-        recursive: true,
-      }).filter(
-        (file) =>
-          typeof file === 'string' &&
-          file.includes('package.json') &&
-          !file.includes('node_modules')
-      )
-    );
-    if (examplePkgJsonArray.length !== 0) {
-      for (const examplePkgJson of examplePkgJsonArray) {
-        await updatePackageJson(
-          path.resolve(rootDir, 'examples', examplePkgJson),
-          (config) => {
-            for (const pkg of changedPackages) {
-              if (config.dependencies?.[pkg.name]) {
-                config.dependencies[pkg.name] = `^${version}`;
-              }
-              if (config.devDependencies?.[pkg.name]) {
-                config.devDependencies[pkg.name] = `^${version}`;
-              }
-            }
-          }
-        );
-      }
-      if (existsSync(path.resolve(rootDir, 'pnpm-lock.yaml'))) {
-        console.info('  Updating pnpm-lock.yaml...');
-        try {
-          execSync('pnpm install --no-frozen-lockfile');
-        } catch (/** @type {any} */ err) {
-          throw new Error(err.stdout.toString());
-        }
-      }
-    }
-  }
+  // if (existsSync(path.resolve(rootDir, 'examples'))) {
+  //   console.info('Updating examples to use new package versions...');
+  //   const examplePkgJsonArray = /** @type {string[]} */ (
+  //     readdirSync(path.resolve(rootDir, 'examples'), {
+  //       recursive: true,
+  //     }).filter(
+  //       (file) =>
+  //         typeof file === 'string' &&
+  //         file.includes('package.json') &&
+  //         !file.includes('node_modules')
+  //     )
+  //   );
+  //   if (examplePkgJsonArray.length !== 0) {
+  //     for (const examplePkgJson of examplePkgJsonArray) {
+  //       await updatePackageJson(
+  //         path.resolve(rootDir, 'examples', examplePkgJson),
+  //         (config) => {
+  //           for (const pkg of changedPackages) {
+  //             if (config.dependencies?.[pkg.name]) {
+  //               config.dependencies[pkg.name] = `^${version}`;
+  //             }
+  //             if (config.devDependencies?.[pkg.name]) {
+  //               config.devDependencies[pkg.name] = `^${version}`;
+  //             }
+  //           }
+  //         }
+  //       );
+  //     }
+  //     if (existsSync(path.resolve(rootDir, 'pnpm-lock.yaml'))) {
+  //       console.info('  Updating pnpm-lock.yaml...');
+  //       try {
+  //         execSync('pnpm install --no-frozen-lockfile');
+  //       } catch (/** @type {any} */ err) {
+  //         throw new Error(err.stdout.toString());
+  //       }
+  //     }
+  //   }
+  // }
 
   if (!process.env.CI) {
     console.warn(
@@ -430,13 +427,16 @@ export const publish = async (options) => {
 
   console.info();
   console.info('Clear package scripts...');
-  for (const pkg of changedPackages) {
-    await updatePackageJson(
-      path.resolve(rootDir, pkg.packageDir, 'package.json'),
-      (config) => {
-        config.scripts = {};
-      }
-    );
+
+  if (options.emptyPackageScript) {
+    for (const pkg of changedPackages) {
+      await updatePackageJson(
+        path.resolve(rootDir, pkg.packageDir, 'package.json'),
+        (config) => {
+          config.scripts = {};
+        }
+      );
+    }
   }
 
   console.info();

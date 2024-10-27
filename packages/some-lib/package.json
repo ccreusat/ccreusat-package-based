@@ -13,7 +13,10 @@
   "files": [
     "dist"
   ],
-  "scripts": {},
+  "scripts": {
+    "build": "vite build",
+    "typecheck": "tsc --noEmit"
+  },
   "dependencies": {
     "@ccreusat/client": "workspace:*",
     "react": "catalog:",

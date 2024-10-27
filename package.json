@@ -6,7 +6,7 @@
   "scripts": {
     "tanstack-config-publish": "tanstack-config publish",
     "build": "turbo run build",
-    "check-types": "turbo run check-types"
+    "typecheck": "turbo run typecheck"
   },
   "private": true,
   "devDependencies": {

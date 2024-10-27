@@ -382,25 +382,6 @@ export const publish = async (options) => {
   }
 
   console.info();
-  console.info('Committing changes...');
-  execSync(`git add -A && git commit -m "${releaseCommitMsg(version)}"`);
-  console.info('  Committed Changes.');
-
-  console.info();
-  console.info('Clear package scripts...');
-
-  if (options.emptyPackageScript) {
-    for (const pkg of changedPackages) {
-      await updatePackageJson(
-        path.resolve(rootDir, pkg.packageDir, 'package.json'),
-        (config) => {
-          config.scripts = {};
-        }
-      );
-    }
-  }
-
-  console.info();
   console.info(`Publishing all packages to npm with tag "${npmTag}"`);
 
   // Publish each package
@@ -413,6 +394,16 @@ export const publish = async (options) => {
       stdio: [process.stdin, process.stdout, process.stderr],
     });
   }
+
+  console.info();
+  console.info('Reset package.json file...');
+  execSync(`git checkout -- packages/**/package.json`);
+  console.info('  Reset done.');
+
+  console.info();
+  console.info('Committing changes...');
+  execSync(`git add -A && git commit -m "${releaseCommitMsg(version)}"`);
+  console.info('  Committed Changes.');
 
   console.info();
   console.info('Pushing changes...');

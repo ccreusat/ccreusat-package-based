@@ -44,24 +44,10 @@ export const publish = async (options) => {
     // sort by latest
     // @ts-ignore
     .sort(semver.compare);
-  // Filter tags to our branch/pre-release combo
-  // .filter((t) => {
-  //   // If this is an older release, filter to only include that version
-  //   if (branchConfig.previousVersion) {
-  //     return t.startsWith(branchName);
-  //   }
-  //   if (semver.prerelease(t) === null) {
-  //     return isMainBranch;
-  //   } else {
-  //     return !isMainBranch;
-  //   }
-  // });
 
   // Get the latest tag
   let latestTag = filteredTags.at(-1);
   let rangeFrom = latestTag;
-
-  console.log({ latestTag });
 
   // If RELEASE_ALL is set via a commit subject or body, all packages will be
   // released regardless if they have changed files matching the package srcDir.
@@ -427,7 +413,7 @@ export const publish = async (options) => {
   execSync('git push --tags');
   console.info('  Tags pushed.');
 
-  if (ghToken) {
+  if (ghToken && isMainBranch) {
     console.info();
     console.info('Creating github release...');
 

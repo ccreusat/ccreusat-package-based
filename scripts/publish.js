@@ -23,8 +23,6 @@ import {
 export const publish = async (options) => {
   const { branchConfigs, packages, rootDir, branch, tag, ghToken } = options;
 
-  console.log('publishOptions', { options });
-
   const branchName = /** @type {string} */ (branch ?? currentGitBranch());
   const isMainBranch = branchName === 'main';
   const npmTag = isMainBranch ? 'latest' : branchName;
@@ -158,11 +156,11 @@ export const publish = async (options) => {
   );
 
   // If there is a breaking change and no manual tag is set, do not release
-  if (recommendedReleaseLevel === 2 && !tag) {
+  /* if (recommendedReleaseLevel === 2 && !tag) {
     throw new Error(
       'Major versions releases must be tagged and released manually.'
     );
-  }
+  } */
 
   // If no release is semantically necessary and no manual tag is set, do not release
   if (recommendedReleaseLevel === -1 && !tag) {

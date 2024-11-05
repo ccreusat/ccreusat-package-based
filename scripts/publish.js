@@ -133,7 +133,6 @@ export const publish = async (options) => {
    */
   let recommendedReleaseLevel = commitsSinceLatestTag.reduce(
     (releaseLevel, commit) => {
-      console.log({commit})
       if (commit.type) {
         if (['fix', 'refactor', 'perf'].includes(commit.type)) {
           releaseLevel = Math.max(releaseLevel, 0);
@@ -151,6 +150,8 @@ export const publish = async (options) => {
           RELEASE_ALL = true;
         }
       }
+
+      console.log(releaseLevel)
       return releaseLevel;
     },
     -1

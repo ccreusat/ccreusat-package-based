@@ -101,13 +101,12 @@ Config.prepare(
             .option('--tag <tag>', 'The tag to publish to')
             .option('--branch <branch>', 'The branch to publish from')
             .action((_str, opts) => {
-              checkForConfigFile(env.configPath);
               return publish({
                 branchConfigs: configOpts.publishOptions.branchConfigs,
                 packages: configOpts.publishOptions.packages,
                 rootDir: configOpts.publishOptions.rootDir,
-                branch: opts.branch ?? process.env.BRANCH,
-                tag: opts.tag ?? process.env.TAG,
+                branch: opts._optionValues.branch ?? process.env.BRANCH,
+                tag: opts._optionValues.tag ?? process.env.TAG,
                 ghToken: process.env.GH_TOKEN,
               });
             });

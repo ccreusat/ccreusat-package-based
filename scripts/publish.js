@@ -23,6 +23,8 @@ import {
 export const publish = async (options) => {
   const { branchConfigs, packages, rootDir, branch, tag, ghToken } = options;
 
+  console.log('publishOptions', { options });
+
   const branchName = /** @type {string} */ (branch ?? currentGitBranch());
   const isMainBranch = branchName === 'main';
   const npmTag = isMainBranch ? 'latest' : branchName;
@@ -124,7 +126,7 @@ export const publish = async (options) => {
   );
 
   /**
-   * Parses the commit messsages, log them, and determine the type of release needed
+   * Parses the commit messages, logs them, and determines the type of release needed
    * -1 means no release is necessary
    * 0 means patch release is necessary
    * 1 means minor release is necessary
@@ -170,7 +172,7 @@ export const publish = async (options) => {
     return;
   }
 
-  // If no release is samantically necessary but a manual tag is set, do a patch release
+  // If no release is semantically necessary but a manual tag is set, do a patch release
   if (recommendedReleaseLevel === -1 && tag) {
     recommendedReleaseLevel = 0;
   }

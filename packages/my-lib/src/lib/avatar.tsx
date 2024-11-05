@@ -1,5 +1,0 @@
-export function Avatar({ children }: { children: React.ReactNode }) {
-  return <div>{children}</div>;
-}
-
-export default Avatar;

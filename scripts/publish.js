@@ -151,7 +151,6 @@ export const publish = async (options) => {
         }
       }
 
-      console.log(releaseLevel)
       return releaseLevel;
     },
     -1

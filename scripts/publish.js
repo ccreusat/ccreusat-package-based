@@ -41,9 +41,16 @@ export const publish = async (options) => {
   const filteredTags = allTags
     // Ensure tag is valid
     .filter((t) => semver.valid(t))
+    // Filter tags based on whether the branch is a release or pre-release
+    .filter((t) => {
+      const isPrereleaseTag = semver.prerelease(t) !== null;
+      return branchConfig.prerelease ? isPrereleaseTag : !isPrereleaseTag;
+    })
     // sort by latest
     // @ts-ignore
     .sort(semver.compare);
+
+  console.log({ filteredTags });
 
   // Get the latest tag
   let latestTag = filteredTags.at(-1);

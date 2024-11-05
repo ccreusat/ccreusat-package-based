@@ -50,8 +50,6 @@ export const publish = async (options) => {
     // @ts-ignore
     .sort(semver.compare);
 
-  console.log({ filteredTags });
-
   // Get the latest tag
   let latestTag = filteredTags.at(-1);
   let rangeFrom = latestTag;

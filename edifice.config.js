@@ -2,32 +2,32 @@
 
 import { fileURLToPath } from 'node:url';
 
-export const packages = [
-  {
-    name: '@ccreusat/some-lib',
-    packageDir: 'packages/some-lib',
-  },
-  {
-    name: '@ccreusat/my-lib',
-    packageDir: 'packages/my-lib',
-  },
-  {
-    name: '@ccreusat/client',
-    packageDir: 'packages/client',
-  },
-];
+export const publishOptions = {
+  packages: [
+    {
+      name: '@ccreusat/some-lib',
+      packageDir: 'packages/some-lib',
+    },
+    {
+      name: '@ccreusat/my-lib',
+      packageDir: 'packages/my-lib',
+    },
+    {
+      name: '@ccreusat/client',
+      packageDir: 'packages/client',
+    },
+  ],
 
-export const branchConfigs = {
-  main: {
-    prerelease: false,
+  branchConfigs: {
+    main: {
+      prerelease: false,
+    },
+    develop: {
+      prerelease: true,
+    },
   },
-  develop: {
-    prerelease: true,
-  },
+
+  ghToken: process.env.GH_TOKEN,
+
+  rootDir: fileURLToPath(new URL('.', import.meta.url)),
 };
-
-export const ghToken = process.env.GH_TOKEN;
-
-export const emptyPackageScript = false;
-
-export const rootDir = fileURLToPath(new URL('.', import.meta.url));

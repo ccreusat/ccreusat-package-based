@@ -76,9 +76,9 @@ Config.prepare(
       requireOrImport(env.configPath)
         .then((configOpts) => {
           program
-            .name('@edifice.io/config')
+            .name('@edifice.io/cli')
             .description(
-              'Configuration and tools for publishing and maintaining high-quality JavaScript packages'
+              'Configuration and tools for publishing and maintaining packages'
             )
             .version(pkg.version);
 
@@ -103,9 +103,9 @@ Config.prepare(
             .action((_str, opts) => {
               checkForConfigFile(env.configPath);
               return publish({
-                branchConfigs: configOpts.branchConfigs,
-                packages: configOpts.packages,
-                rootDir: configOpts.rootDir,
+                branchConfigs: configOpts.publishOptions.branchConfigs,
+                packages: configOpts.publishOptions.packages,
+                rootDir: configOpts.publishOptions.rootDir,
                 branch: opts.branch ?? process.env.BRANCH,
                 tag: opts.tag ?? process.env.TAG,
                 ghToken: process.env.GH_TOKEN,

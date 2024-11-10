@@ -54,9 +54,10 @@ export const publish = async (options) => {
   let latestTag = filteredTags.at(-1);
 
   // Check if merging from main to a pre-release branch
-  if (branchConfig.prerelease && isMainBranch) {
+  if (branchConfig.prerelease) {
     const mainTags = execSync('git tag --merged main').toString().split('\n');
     const validMainTags = mainTags.filter((t) => semver.valid(t));
+
     latestTag = validMainTags.at(-1) || latestTag; // Use the latest tag from main if available
   }
 

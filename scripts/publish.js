@@ -52,6 +52,14 @@ export const publish = async (options) => {
 
   // Get the latest tag
   let latestTag = filteredTags.at(-1);
+
+  // Check if merging from main to a pre-release branch
+  if (branchConfig.prerelease && isMainBranch) {
+    const mainTags = execSync('git tag --merged main').toString().split('\n');
+    const validMainTags = mainTags.filter((t) => semver.valid(t));
+    latestTag = validMainTags.at(-1) || latestTag; // Use the latest tag from main if available
+  }
+
   let rangeFrom = latestTag;
 
   // If RELEASE_ALL is set via a commit subject or body, all packages will be

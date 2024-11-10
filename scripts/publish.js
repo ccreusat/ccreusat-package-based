@@ -393,7 +393,7 @@ export const publish = async (options) => {
   console.info('Committing changes...');
   //execSync(`git add -A && git commit -m "${releaseCommitMsg(version)}"`);
   execSync(
-    `git add -A && git reset -- ${changedPackages
+    `git reset -- ${changedPackages
       .map((pkg) => path.resolve(rootDir, pkg.packageDir, 'package.json'))
       .join(' ')}`
   );
@@ -402,13 +402,13 @@ export const publish = async (options) => {
       .map((pkg) => path.resolve(rootDir, pkg.packageDir, 'package.json'))
       .join(' ')}`
   );
-  execSync(`git commit -m "${releaseCommitMsg(version)}" --allow-empty`);
+  //execSync(`git commit -m "${releaseCommitMsg(version)}" --allow-empty`);
   console.info('  Committed Changes.');
 
-  console.info();
-  console.info('Pushing changes...');
-  execSync('git push');
-  console.info('  Changes pushed.');
+  // console.info();
+  // console.info('Pushing changes...');
+  // execSync('git push');
+  // console.info('  Changes pushed.');
 
   console.info();
   console.info(`Creating new git tag v${version}`);
